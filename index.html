@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+<form>
+    <h1>Oblicz miesięczne ratę</h1>
+
+    <label>
+        <input type="checkbox" id="react">
+        Kurs React.js
+    </label>
+
+    <br><br>
+
+    <label>
+        <input type="checkbox" id="javascript">
+        Kurs JavaScript
+    </label>
+
+    <br><br>
+
+    <label for="raty">Liczba rat</label>
+    <input type="number" id="raty">
+
+    <br><br>
+
+    <label for="imie">Imie</label>
+    <input type="text" id="imie">
+
+    <br><br>
+
+    <select id="miasto">
+        <option value="Warszawie">Warszawa</option>
+        <option value="Katowicach">Katowice</option>
+    </select>
+
+    <br><br>
+
+    <label>
+        <input type="radio" name="plec" id="m" value="męrzczyną">
+        Męrzczyzna
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="plec" id="k" value="kobietą">
+        Kobieta
+    </label>
+
+    <br><br>
+
+    <input type="button" value="Oblicz" onclick="oblicz()">
+</form>
+
+<br>
+
+<div id="wynik"></div>
+
+<script>
+function oblicz() 
+{
+
+    let liczbaRat = document.getElementById("raty").value;
+    let miasto = document.getElementById("miasto").value;
+    let imie = document.getElementById("imie").value
+    let kursReact = document.getElementById("react");
+    let kursJs = document.getElementById("javascript");
+    let wynik = document.getElementById("wynik");
+    let plecm = document.getElementById("m");
+    let pleck = document.getElementById("k");
+    let plec = "";
+
+    let kwota = 0;
+
+    if (kursReact.checked) {
+        kwota += 5000;
+    }
+
+    if (kursJs.checked) {
+        kwota += 3000;
+    }
+    
+    if (plecm.checked)
+    {
+        plec = plecm.value
+    }
+    else if(pleck.checked)
+    {
+        plec = pleck.value
+    }
+
+    
+
+    let rata = kwota / liczbaRat;
+
+    wynik.innerHTML = 
+        imie + " jesteś " + plec +
+        ". Kurs odbędzie sie w " + miasto +
+        ". Koszt całkowity: " + kwota +
+        " zł. Płacisz " + liczbaRat +
+        " rat po " + rata + " zł";
+}
+</script>
+</body>
+</html>
